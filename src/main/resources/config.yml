@@ -1,0 +1,7 @@
+database:
+  type: "mysql"
+  user: "root"
+  password: "kingdxvi"
+  host: "localhost"
+  database: "rankup"
+  file: "storage.db"
