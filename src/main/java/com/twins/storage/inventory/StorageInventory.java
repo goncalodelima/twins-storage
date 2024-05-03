@@ -135,6 +135,7 @@ public class StorageInventory extends View {
 
                 int remove = Math.min(storage.getAmount(), storage.getLimit());
                 storage.setAmount(storage.getAmount() - remove);
+                StoragePlugin.getInstance().getStorageService().update(storage);
                 StoragePlugin.getInstance().getVault().depositPlayer(player, 10000000 * remove);
             } else if (click.isRightClick()) {
 
