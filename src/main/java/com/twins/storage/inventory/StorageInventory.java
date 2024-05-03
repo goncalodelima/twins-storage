@@ -36,7 +36,6 @@ public class StorageInventory extends View {
 
                 Storage storage = (Storage) context.getInitialData();
 
-
                 if (players.contains(context.getPlayer().getName())) {
                     players.remove(context.getPlayer().getName());
                     bukkitItemComponentBuilder.withItem(new ItemBuilder(Material.ENDER_CHEST)
@@ -145,6 +144,7 @@ public class StorageInventory extends View {
                 }
 
                 storage.setAmount(storage.getAmount() - 64);
+                StoragePlugin.getInstance().getStorageService().update(storage);
                 player.getInventory().addItem(cactus);
             }
 
@@ -165,6 +165,7 @@ public class StorageInventory extends View {
 
             StoragePlugin.getInstance().getVault().withdrawPlayer(player, price);
             storage.setLevel(storage.getLevel() + 1);
+            StoragePlugin.getInstance().getStorageService().update(storage);
             player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
             click.update();
         });
@@ -207,6 +208,7 @@ public class StorageInventory extends View {
 
                     click.getPlayer().getInventory().remove(click.getItem());
                     storage.setLimit(storage.getLimit() + limit);
+                    StoragePlugin.getInstance().getStorageService().update(storage);
                     click.getPlayer().playSound(click.getPlayer().getLocation(), Sound.LEVEL_UP, 1, 1);
 
                     click.update();
