@@ -15,8 +15,6 @@ public class PlotListener implements Listener {
     @EventHandler
     private void onItemSpawn(ItemSpawnEvent event) {
 
-        System.out.println(event.getEntity().getItemStack() == null);
-        System.out.println(event.getEntity().getItemStack().getType() != Material.CACTUS);
         if (event.getEntity().getItemStack() == null || event.getEntity().getItemStack().getType() != Material.CACTUS)
             return;
 
@@ -33,6 +31,7 @@ public class PlotListener implements Listener {
 
         event.setCancelled(true);
         storage.setAmount(set);
+        StoragePlugin.getInstance().getStorageService().update(storage);
 
     }
 
@@ -53,6 +52,8 @@ public class PlotListener implements Listener {
 
         event.setCancelled(true);
         storage.setAmount(storage.getAmount() + event.getItemDrop().getItemStack().getAmount());
+        StoragePlugin.getInstance().getStorageService().update(storage);
+        
     }
 
 }
